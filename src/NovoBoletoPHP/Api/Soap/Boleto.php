@@ -7,37 +7,37 @@ class Boleto
     /**
      * @type string
      */
-    public $nossoNumero;
+    public $nosso_numero;
 
     /**
      * @type string
      */
-    public $inicioNossoNumero;
+    public $inicio_nosso_numero;
 
     /**
      * @type string
      */
-    public $numeroDocumento;
+    public $numero_documento;
 
     /**
      * @type string
      */
-    public $dataVencimento;
+    public $data_vencimento;
 
     /**
      * @type string
      */
-    public $dataDocumento;
+    public $data_documento;
 
     /**
      * @type string
      */
-    public $dataProcessamento;
+    public $data_processamento;
 
     /**
      * @type string
      */
-    public $valorBoleto;
+    public $valor_boleto;
 
     /**
      * @type string
@@ -57,12 +57,12 @@ class Boleto
     /**
      * @type string
      */
-    public $variacaoCarteira;
+    public $variacao_carteira;
 
     /**
      * @type string
      */
-    public $especieDoc;
+    public $especie_doc;
 
     /**
      * @type string
@@ -72,7 +72,7 @@ class Boleto
     /**
      * @type string
      */
-    public $sacadoDocumento;
+    public $sacado_documento;
 
     /**
      * @type string
@@ -117,7 +117,7 @@ class Boleto
     /**
      * @type string
      */
-    public $contaDv;
+    public $conta_dv;
 
     /**
      * @type string
@@ -127,7 +127,7 @@ class Boleto
     /**
      * @type string
      */
-    public $cpfCnpj;
+    public $cpf_cnpj;
 
     /**
      * @type string
@@ -137,7 +137,7 @@ class Boleto
     /**
      * @type string
      */
-    public $cidadeUf;
+    public $cidade_uf;
 
     /**
      * @type string
@@ -147,26 +147,33 @@ class Boleto
     /**
      * @type string
      */
-    public $logoEmpresa;
+    public $logo_empresa;
 
-    public function toData()
+    public function __construct($data)
+    {
+        foreach($data as $key => $value) {
+            $this->$key = $value;
+        }
+    }
+
+    public function toArray()
     {
         return array(
-            'nosso_numero' => $this->nossoNumero;,
-            'inicio_nosso_numero' => $this->inicioNossoNumero,
-            'numero_documento' => $this->numeroDocumento,
-            'data_vencimento' => $this->dataVencimento,
-            'data_documento' => $this->dataDocumento,
-            'data_processamento' => $this->dataProcessamento,
-            'valor_boleto' => $this->valorBoleto,
+            'nosso_numero' => $this->nosso_numero,
+            'inicio_nosso_numero' => $this->inicio_nosso_numero,
+            'numero_documento' => $this->numero_documento,
+            'data_vencimento' => $this->data_vencimento,
+            'data_documento' => $this->data_documento,
+            'data_processamento' => $this->data_processamento,
+            'valor_boleto' => $this->valor_boleto,
             'convenio' => $this->convenio,
             'contrato' => $this->contrato,
             'carteira' => $this->carteira,
-            'variacao_carteira' => $this->variacaoCarteira,
-            'especie_doc' => $this->especieDoc,
+            'variacao_carteira' => $this->variacao_carteira,
+            'especie_doc' => $this->especie_doc,
 
             'sacado' => $this->sacado,
-            'sacado_documento' => $this->sacadoDocumento,
+            'sacado_documento' => $this->sacado_documento,
             'endereco1' => $this->endereco1,
             'endereco2' => $this->endereco2,
             'demonstrativo1' => $this->demonstrativo1,
@@ -175,13 +182,13 @@ class Boleto
             'especie' => $this->especie,
             'agencia' => $this->agencia, // Num da agencia, sem digito
             'conta' => $this->conta, // Num da conta, sem digito
-            'conta_dv' => $this->contaDv,
+            'conta_dv' => $this->conta_dv,
             'identificacao' => $this->identificacao,
-            'cpf_cnpj' => $this->cpfCnpj,
+            'cpf_cnpj' => $this->cpf_cnpj,
             'endereco' => $this->endereco,
-            'cidade_uf' => $this->cidadeUf,
+            'cidade_uf' => $this->cidade_uf,
             'cedente' => $this->cedente,
-            'logo_empresa' => $this->logoEmpresa,
+            'logo_empresa' => $this->logo_empresa,
         );
     }
 

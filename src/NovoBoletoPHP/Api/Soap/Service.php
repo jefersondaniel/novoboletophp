@@ -13,6 +13,7 @@ class Service
      */
     public function makeBoletoAsHTML($codigoBanco, $boleto)
     {
+        $boleto = new Boleto($boleto);
         $factory = new BoletoFactory;
         return $factory->makeBoletoAsHTML($codigoBanco, $boleto->toArray());
     }
