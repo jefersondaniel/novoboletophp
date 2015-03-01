@@ -28,6 +28,7 @@ Se você já conhece o **Composer**, adicione a dependência abaixo à diretiva 
 ## Como Usar
 ### Lendo um arquivo de Retorno
 ```php
+use \NovoBoletoPHP\BoletoFactory;
 
 $factory = new BoletoFactory;
 
