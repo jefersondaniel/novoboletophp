@@ -1,0 +1,27 @@
+{
+    "name": "jefersondaniel/novoboletophp",
+    "description": "Geração de boletos em HTML e PDF. Baseado no boletophp",
+    "require": {
+        "twig/twig": "~1.18"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "phpunit/php-code-coverage": "1.2.*"
+    },
+    "license": "LGPL",
+    "authors": [
+        {
+            "name": "Jeferson Daniel",
+            "email": "contato@jefersondaniel.com"
+        },
+        {
+            "name": "Anderson Danilo",
+            "email": "contato@andersondanilo.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "BoletosPHP\\": "src/BoletosPHP"
+        }
+    }
+}
