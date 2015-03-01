@@ -1,4 +1,4 @@
-CnabPHP
+NovoBoletoPHP
 =======
 
 [![Build Status](https://secure.travis-ci.org/jefersondaniel/novoboletophp.png?branch=master)](http://travis-ci.org/jefersondaniel/novoboletophp)
@@ -15,7 +15,7 @@ Projeto baseado no boletophp que visa manter os boletos atualizados e ser mais f
 |-----------------|-------------------------|--------------|
 | Banco do Brasil | Carteira 18 Variação 27 | Sim          |
 
-Como os layout serão baseados no boletophp, deixamos crédito aos desenvolvedores listados no síte http://boletophp.com.br/ 
+Como os layouts serão baseados no boletophp, deixamos crédito aos desenvolvedores listados no síte http://boletophp.com.br/ 
 
 
 ## Instalação
@@ -26,7 +26,6 @@ Se você já conhece o **Composer**, adicione a dependência abaixo à diretiva 
 ```
 
 ## Como Usar
-### Lendo um arquivo de Retorno
 ```php
 use \NovoBoletoPHP\BoletoFactory;
 
