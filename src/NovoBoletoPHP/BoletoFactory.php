@@ -59,6 +59,17 @@ class BoletoFactory {
         return $this->makeBoleto($banco, $data)->asHTML();
     }
 
+    /*
+    public function makeBoletoAsPDF($banco, $data)
+    {
+        $html = $this->makeBoletoAsHTML();
+
+        $dompdf = new \DOMPDF();
+        $dompdf->load_html($html);
+        return $dompdf->output();
+    }
+    */
+
     public function makeImageUrl($imageName)
     {
         if (strstr($imageName, '://') || strpos('/', $imageName) === 0) {
