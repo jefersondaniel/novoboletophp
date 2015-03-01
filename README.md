@@ -1,9 +1,9 @@
 CnabPHP
 =======
 
-[![Build Status](https://secure.travis-ci.org/jefersondaniel/NovoBoletoPHP.png?branch=master)](http://travis-ci.org/jefersondaniel/NovoBoletoPHP)
-[![Latest Stable Version](https://poser.pugx.org/jefersondaniel/NovoBoletoPHP/v/stable.svg)](https://packagist.org/packages/jefersondaniel/NovoBoletoPHP)
-[![Latest Unstable Version](https://poser.pugx.org/jefersondaniel/NovoBoletoPHP/v/unstable.svg)](https://packagist.org/packages/jefersondaniel/NovoBoletoPHP)
+[![Build Status](https://secure.travis-ci.org/jefersondaniel/novoboletophp.png?branch=master)](http://travis-ci.org/jefersondaniel/novoboletophp)
+[![Latest Stable Version](https://poser.pugx.org/jefersondaniel/novoboletophp/v/stable.svg)](https://packagist.org/packages/jefersondaniel/novoboletophp)
+[![Latest Unstable Version](https://poser.pugx.org/jefersondaniel/novoboletophp/v/unstable.svg)](https://packagist.org/packages/jefersondaniel/novoboletophp)
 
 Projeto baseado no boletophp que visa manter os boletos atualizados e ser mais fácil de contribuir.
 
@@ -12,7 +12,7 @@ Projeto baseado no boletophp que visa manter os boletos atualizados e ser mais f
 
 
 | Banco           | Carteira                | Testado      |
-|-----------------|----------------------------------------|
+|-----------------|-------------------------|--------------|
 | Banco do Brasil | Carteira 18 Variação 27 | Sim          |
 
 Como os layout serão baseados no boletophp, deixamos crédito aos desenvolvedores listados no síte http://boletophp.com.br/ 
@@ -22,7 +22,7 @@ Como os layout serão baseados no boletophp, deixamos crédito aos desenvolvedor
 ### Composer
 Se você já conhece o **Composer**, adicione a dependência abaixo à diretiva *"require"* no seu **composer.json**:
 ```
-"jefersondaniel/NovoBoletoPHP": "0.5.*"
+"jefersondaniel/novoboletophp": "0.5.*"
 ```
 
 ## Como Usar
