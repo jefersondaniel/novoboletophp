@@ -83,7 +83,8 @@ class BoletoBBTest extends \PHPUnit_Framework_TestCase {
     public function testCodigoDeBarrasTemValor()
     {
         $boleto = $this->makeBoleto();
-        $valor = $this->getData()['valor_boleto'];
+        $data = $this->getData();
+        $valor = $data['valor_boleto'];
         $valor = str_replace(',', '.', $valor);
         $valor = number_format($valor, 2, '', '');
         $this->assertEquals($valor, substr($boleto->data['codigo_barras'], 9, 10));
@@ -106,7 +107,8 @@ class BoletoBBTest extends \PHPUnit_Framework_TestCase {
     public function testCodigoDeBarrasFormataNossoNumeroParaConvenioDe7Digitos()
     {
         $boleto = $this->makeBoleto(7);
-        $nossoNumero = $this->getData()['nosso_numero'];
+        $data = $this->getData();
+        $nossoNumero = $data['nosso_numero'];
         $nossoNumero = sprintf('%010d', $nossoNumero);
         $this->assertEquals($nossoNumero, substr($boleto->data['codigo_barras'], 32, 10));
     }
@@ -141,7 +143,8 @@ class BoletoBBTest extends \PHPUnit_Framework_TestCase {
     public function testLinhaDigitavelTemDVDoCampo1()
     {
         $boleto = $this->makeBoleto();
-        $campo1 = explode(' ', $boleto->data['linha_digitavel'])[0];
+        $campo1 = explode(' ', $boleto->data['linha_digitavel']);
+        $campo1 = $campo1[0];
         $digitos = str_replace('.', '', substr($campo1, 0, 10));
         $dv = $boleto->modulo10($digitos);
         $this->assertEquals($dv, substr($campo1, 10, 1));
@@ -152,14 +155,16 @@ class BoletoBBTest extends \PHPUnit_Framework_TestCase {
         $boleto = $this->makeBoleto();
         $parteCodigoDeBarras = substr($boleto->data['codigo_barras'], 24, 10);
         $parteCodigoDeBarras = preg_replace('#([0-9]{5})([0-9]{5})#', '$1.$2', $parteCodigoDeBarras);
-        $campo2 = explode(' ', $boleto->data['linha_digitavel'])[1];
+        $campo2 = explode(' ', $boleto->data['linha_digitavel']);
+        $campo2 = $campo2[1];
         $this->assertSame($parteCodigoDeBarras, substr($campo2, 0, 11));
     }
 
     public function testLinhaDigitavelTemDVDoCampo2()
     {
         $boleto = $this->makeBoleto();
-        $campo2 = explode(' ', $boleto->data['linha_digitavel'])[1];
+        $campo2 = explode(' ', $boleto->data['linha_digitavel']);
+        $campo2 = $campo2[1];
         $digitos = str_replace('.', '', substr($campo2, 0, 11));
         $dv = '' . $boleto->modulo10($digitos);
         $this->assertSame($dv, substr($campo2, 11, 1));
@@ -170,14 +175,16 @@ class BoletoBBTest extends \PHPUnit_Framework_TestCase {
         $boleto = $this->makeBoleto();
         $parteCodigoDeBarras = substr($boleto->data['codigo_barras'], 34, 10);
         $parteCodigoDeBarras = preg_replace('#([0-9]{5})([0-9]{5})#', '$1.$2', $parteCodigoDeBarras);
-        $campo3 = explode(' ', $boleto->data['linha_digitavel'])[2];
+        $campo3 = explode(' ', $boleto->data['linha_digitavel']);
+        $campo3 = $campo3[2];
         $this->assertSame($parteCodigoDeBarras, substr($campo3, 0, 11));
     }
 
     public function testLinhaDigitavelTemDVDoCampo3()
     {
         $boleto = $this->makeBoleto();
-        $campo3 = explode(' ', $boleto->data['linha_digitavel'])[2];
+        $campo3 = explode(' ', $boleto->data['linha_digitavel']);
+        $campo3 = $campo3[2];
         $digitos = str_replace('.', '', substr($campo3, 0, 11));
         $dv = '' . $boleto->modulo10($digitos);
         $this->assertSame($dv, substr($campo3, 11, 1));
@@ -186,7 +193,8 @@ class BoletoBBTest extends \PHPUnit_Framework_TestCase {
     public function testLinhaDigitavelTemDVDoCodigoDeBarras()
     {
         $boleto = $this->makeBoleto();
-        $campo4 = explode(' ', $boleto->data['linha_digitavel'])[3];
+        $campo4 = explode(' ', $boleto->data['linha_digitavel']);
+        $campo4 = $campo4[3];
 
         $dv = $boleto->data['codigo_barras'][4];
         $this->assertSame($dv, $campo4);
@@ -195,7 +203,8 @@ class BoletoBBTest extends \PHPUnit_Framework_TestCase {
     public function testLinhaDigitavelTemFatorDeVencimento()
     {
         $boleto = $this->makeBoleto();
-        $campo5 = explode(' ', $boleto->data['linha_digitavel'])[4];
+        $campo5 = explode(' ', $boleto->data['linha_digitavel']);
+        $campo5 = $campo5[4];
         $this->assertEquals(
             $boleto->fatorVencimento($boleto->data['data_vencimento']),
             substr($campo5, 0, 4)
@@ -205,8 +214,10 @@ class BoletoBBTest extends \PHPUnit_Framework_TestCase {
     public function testLinhaDigitavelTemValorDoTitulo()
     {
         $boleto = $this->makeBoleto();
-        $campo5 = explode(' ', $boleto->data['linha_digitavel'])[4];
-        $valor = $this->getData()['valor_boleto'];
+        $campo5 = explode(' ', $boleto->data['linha_digitavel']);
+        $campo5 = $campo5[4];
+        $valor = $this->getData();
+        $valor = $valor['valor_boleto'];
         $valor = str_replace(',', '.', $valor);
         $valor = number_format($valor, 2, '', '');
         $valor = sprintf('%010d', $valor);
