@@ -1,17 +1,23 @@
 <?php
 namespace NovoBoletoPHP\BancoDoBrasil;
 
-use \NovoBoletoPHP\Base\Boleto;
+use \NovoBoletoPHP\Base\Boleto as BoletoBase;
 use \NovoBoletoPHP\FormatterHelper;
 
-class BoletoBB extends Boleto {
+class Boleto extends BoletoBase {
     public function getTemplate()
     {
         return 'bancos/layout_bb.html';
     }
 
+    public function getLogoBanco() {
+        return 'logobb.jpg';
+    }
+
     protected function filterData(array $dadosboleto)
     {
+        $dadosboleto = parent::filterData($dadosboleto);
+
         $tamanhoNumeroConvenio = strlen($dadosboleto['convenio']);
         $tamanhoNossoNumero = strlen($dadosboleto['nosso_numero']);
 

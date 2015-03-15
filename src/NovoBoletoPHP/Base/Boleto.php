@@ -17,14 +17,19 @@ class Boleto {
 
     }
 
-    protected function filterData(array $dadosboleto)
+    protected function filterData(array $data)
     {
+        $data['logo_banco'] = $this->getLogoBanco();
         return $data;
     }
 
     public function getTemplate()
     {
         return 'layout_base.html';
+    }
+
+    public function getLogoBanco() {
+        return 'logobb.jpg';
     }
 
     public function asHTML()

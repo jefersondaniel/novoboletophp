@@ -31,7 +31,7 @@ class BoletoFactory {
         ));
 
         $this->layouts = array(
-            self::BANCO_DO_BRASIL => '\NovoBoletoPHP\BancoDoBrasil\BoletoBB'
+            self::BANCO_DO_BRASIL => '\NovoBoletoPHP\BancoDoBrasil\Boleto',
         );
 
         $this->configure();
@@ -39,7 +39,7 @@ class BoletoFactory {
 
     public function configure()
     {
-        $this->twig->addFunction(new \Twig_SimpleFunction('imageUrl', array($this, 'makeImageUrl'), array(
+        $this->twig->addFilter(new \Twig_SimpleFilter('imageUrl', array($this, 'makeImageUrl'), array(
             'is_safe' => array('html')
         )));
         $this->twig->addFilter(new \Twig_SimpleFilter('barcode', array($this, 'barcode'), array(
