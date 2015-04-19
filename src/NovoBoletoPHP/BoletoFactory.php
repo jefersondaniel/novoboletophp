@@ -59,16 +59,21 @@ class BoletoFactory {
         return $this->makeBoleto($banco, $data)->asHTML();
     }
 
-    /*
     public function makeBoletoAsPDF($banco, $data)
     {
-        $html = $this->makeBoletoAsHTML();
-
-        $dompdf = new \DOMPDF();
-        $dompdf->load_html($html);
-        return $dompdf->output();
+        $html = $this->makeBoletoAsHTML($banco, $data);
+        $tmpfname1 = tempnam(sys_get_temp_dir(), 'wkhtml').'.html';
+        $tmpfname2 = tempnam(sys_get_temp_dir(), 'wkhtml').'.pdf';
+        file_put_contents($tmpfname1, $html);
+        $output = array();
+        $return = null;
+        exec("xvfb-run -a -s '-screen 0 640x480x16' wkhtmltopdf --page-size A4 --margin-left 10mm --margin-right 10mm --zoom 2 {$tmpfname1} {$tmpfname2} 2>&1", $output, $return);
+        if($return != 0)
+            throw new \Exception(implode("<br />", $output));
+        if(!file_exists($tmpfname2))
+            throw new \Exception("Arquivo não gerado em $tmpfname2");
+        return file_get_contents($tmpfname2);
     }
-    */
 
     public function makeImageUrl($imageName)
     {

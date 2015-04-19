@@ -2,7 +2,7 @@
 require_once '../../vendor/autoload.php';
 
 $serviceClassName =  '\NovoBoletoPHP\Api\Soap\Service';
-$currentLocation = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . '/' . $_SERVER['REQUEST_URI'];
+$currentLocation = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
 use WSDL\WSDLCreator;
 
@@ -15,11 +15,13 @@ if(isset($_GET['service']) || isset($_GET['wsdl'])) {
     else if (isset($_GET['service']))
         $wsdl->renderWSDLService();
     exit;
-
 }
 
 $server = new SoapServer(null, array(
-    'uri' => $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . '/' . $_SERVER['REQUEST_URI']
+    'uri' => $currentLocation
 ));
-$server->setClass($serviceClassName);
+$server->setClass($serviceClassName, array(
+    'cachePath' => false, // Em produção, sempre definir uma pasta para os caches do Twig.
+    'imageUrl' => dirname(dirname($currentLocation)).'/images'
+));
 $server->handle();
