@@ -1,7 +1,7 @@
 <?php
 namespace NovoBoletoPHP\Base;
 
-class Boleto {
+abstract class Boleto {
     protected $twig;
     public $data;
 
@@ -19,17 +19,37 @@ class Boleto {
 
     protected function filterData(array $data)
     {
-        $data['logo_banco'] = $this->getLogoBanco();
+        $codigoBanco = $this->getCodigoBancoComDv();
+
+        $data = array_merge($data, array(
+            'logo_banco' => $this->getLogoBanco(),
+            'codigo_banco_com_dv' => $this->getCodigoBancoComDv(),
+            'texto_sacado' => 'Sacado', // Pode variar para Pagador
+            'texto_cedente' => 'Cedente', // Pode variar para Beneficiário
+            'exibir_demonstrativo_na_ficha' => true,
+            'exibir_demonstrativo_no_recibo' => false,
+        ));
+
         return $data;
     }
 
-    public function getTemplate()
+    abstract public function getTemplate();
+
+    abstract public function getLogoBanco();
+
+    abstract public function getCodigoBanco();
+
+    public function getCodigoBancoFormatado()
     {
-        return 'layout_base.html';
+        return sprintf('%03d', $this->getCodigoBanco());
     }
 
-    public function getLogoBanco() {
-        return 'logobb.jpg';
+    protected function getCodigoBancoComDv()
+    {
+        $numero = $this->getCodigoBancoFormatado();
+        $parte1 = substr($numero, 0, 3);
+        $parte2 = $this->modulo11($parte1);
+        return $parte1 . "-" . $parte2;
     }
 
     public function asHTML()
@@ -157,12 +177,5 @@ class Boleto {
             $resto = $soma % 11;
             return $resto;
         }
-    }
-
-    protected function geraCodigoBanco($numero)
-    {
-        $parte1 = substr($numero, 0, 3);
-        $parte2 = $this->modulo11($parte1);
-        return $parte1 . "-" . $parte2;
     }
 }

@@ -44,7 +44,7 @@
         background: url('{{ logo_empresa }}') no-repeat top left;
         background-size: 70px 70px;
         padding-left: 90px;
-        height: 65px;
+        height: 55px;
       }
       #instr_header h1 {
         font-size: 16px;
@@ -91,7 +91,7 @@
       }
       table.header {
         width: 666px;
-        margin-top: 20px;
+        margin-top: 15px;
         margin-bottom: 10px;
         border-bottom: 2px black solid;
       }
@@ -115,7 +115,6 @@
         color: black
       }
       table.line {
-        padding-bottom: 1px;
         border-bottom: 1px black solid;
       }
       table.line tr.titulos td {
@@ -177,8 +176,17 @@
         color: black;
         width: 184px;
       }
+      td.footer {
+        font-family: 'Arial Narro';
+        font-size: 9px;
+        color: black;        
+      }
+      table.line.demonstrativo {
+        margin-bottom: 15px;
+        border-bottom: none;
+      }
       div.footer {
-        margin-bottom: 30px;
+        margin-bottom: 15px;
       }
       div.footer p {
         width: 88px;
@@ -191,7 +199,7 @@
       }
       div.barcode {
         width: 666px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
       }
 
       .end {
@@ -367,7 +375,7 @@
             <tr>
               <td class=ct width=666>
                 <div align=right>
-                  <b class=cp>Recibo do Sacado</b>
+                  <b class=cp>Recibo do {{texto_sacado}}</b>
                 </div>
               </td>
             </tr>
@@ -393,7 +401,7 @@
         <table class="line" cellspacing="0" cellpadding="0">
           <tbody>
             <tr class="titulos">
-              <td class="col_9_of_18">Cedente</td>
+              <td class="col_9_of_18">{{texto_cedente}}</td>
               <td class="col_2_of_18">Esp&eacute;cie</td>
               <td class="col_2_of_18">Quantidade</td>
               <td class="end col_5_of_18">Nosso n&uacute;mero</td>
@@ -470,11 +478,11 @@
         </table>
         {% endblock %}
 
-        {% block recibo_line6 %}
+        {% block recibo_linha6 %}
         <table class="line" cellspacing="0" cellpadding="0">
           <tbody>
             <tr class="titulos">
-              <td class="col_18_of_18">Sacado</td>
+              <td class="col_18_of_18">{{texto_sacado}}</td>
             </tr>
             <tr class="campos">
               <td>{{ sacado }}</td>
@@ -483,12 +491,31 @@
         </table>
         {% endblock %}
 
-        {% block recibo_linha_extra %}
+        {% block recibo_linha_7 %}
         {% endblock %}
 
-        <div class="footer">
-          <p>Autentica&ccedil;&atilde;o mec&acirc;nica</p>
-        </div>
+        <table class="line demonstrativo" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="footer col_13_of_18">
+              {% if exibir_demonstrativo_no_recibo %}
+                Demostrativo
+              {% endif %}
+            </td>
+            <td class="footer col_5_of_18" align="right">Autentica&ccedil;&atilde;o mec&acirc;nica</td>
+          </tr>
+          {% if exibir_demonstrativo_no_recibo %}
+          <tr>
+            <td>
+              <p>{{ demonstrativo1 }}</p>
+              <p>{{ demonstrativo2 }}</p>
+              <p>{{ demonstrativo3 }}</p>
+            </td>
+          </tr>
+          {% endif %}
+        </table>
+
+        {% block recibo_linha_8 %}
+        {% endblock %}
 
         <div class="cut">
           <p>Corte na linha pontilhada</p>
@@ -529,7 +556,7 @@
         <table class="line" cellspacing="0" cellpadding="0">
           <tbody>
             <tr class="titulos">
-              <td class="col_13_of_18">Cedente</td>
+              <td class="col_13_of_18">{{texto_cedente}}</td>
               <td class="col_5_of_18">Ag&ecirc;ncia/C&oacute;digo cedente</td>
             </tr>
             <tr class="campos">
@@ -588,7 +615,7 @@
         </table>
         {% endblock %}
 
-        {% block ficha_linha_extra %}
+        {% block ficha_linha_5 %}
         {% endblock %}
 
         {% block ficha_instrucoes %}
@@ -605,9 +632,11 @@
                     </tr>
                     <tr class="campos">
                       <td class="instrucoes" rowspan="5">
+                        {% if exibir_demonstrativo_na_ficha %}
                         <p>{{ demonstrativo1 }}</p>
                         <p>{{ demonstrativo2 }}</p>
                         <p>{{ demonstrativo3 }}</p>
+                        {% endif %}
                         <p>{{ instrucoes1 }}</p>
                         <p>{{ instrucoes2 }}</p>
                         <p>{{ instrucoes3 }}</p>
@@ -701,7 +730,7 @@
         <table class="line" cellspacing="0" cellpadding="0">
           <tbody>
             <tr class="titulos">
-              <td class="sacado2">Sacado</td>
+              <td class="sacado2">{{texto_sacado}}</td>
             </tr>
             <tr class="campos">
               <td class="sacado2">
