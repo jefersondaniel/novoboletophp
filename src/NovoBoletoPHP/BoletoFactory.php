@@ -67,7 +67,7 @@ class BoletoFactory {
         file_put_contents($tmpfname1, $html);
         $output = array();
         $return = null;
-        exec("xvfb-run -a -s '-screen 0 640x480x16' wkhtmltopdf --page-size A4 --margin-left 10mm --margin-right 10mm --zoom 2 {$tmpfname1} {$tmpfname2} 2>&1", $output, $return);
+        exec("xvfb-run -a -s '-screen 0 640x480x16' wkhtmltopdf --page-size A5 --margin-left 10mm --margin-right 10mm --zoom 2 {$tmpfname1} {$tmpfname2} 2>&1", $output, $return);
         if($return != 0)
             throw new \Exception(implode("<br />", $output));
         if(!file_exists($tmpfname2))
