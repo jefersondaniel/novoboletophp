@@ -8,6 +8,7 @@ $factory = new BoletoFactory(array(
 ));
 
 $dados = array(
+    'codigo_cedente' => '0123456',
     'nosso_numero' => '7002',
     'inicio_nosso_numero' => '7000',
     'numero_documento' => '7002',
@@ -15,9 +16,8 @@ $dados = array(
     'data_documento' => '22/02/2015',
     'data_processamento' => '22/02/2015',
     'valor_boleto' => '10,00',
-    'convenio' => '1208625',
-    'contrato' => '',
     'carteira' => '18',
+    'carteira_descricao' => 'COBRANÇA SIMPLES - CSR',
     'variacao_carteira' => '27',
     'especie_doc' => 'DS',
 
@@ -29,7 +29,7 @@ $dados = array(
     'instrucoes1' => 'Não receber após vencimento',
     'aceite' => 'N',
     'especie' => 'R$',
-    'agencia' => '4567', // Num da agencia, sem digito
+    'agencia' => '3491', // Num da agencia, sem digito
     'conta' => '12519', // Num da conta, sem digito
     'conta_dv' => '9',
     'identificacao' => 'Empresa de Teste',
@@ -40,4 +40,4 @@ $dados = array(
     'logo_empresa' => 'http://placehold.it/200&text=logo',
 );
 
-echo $factory->makeBoletoAsHTML(BoletoFactory::BANCO_DO_BRASIL, $dados);
+echo $factory->makeBoletoAsHTML(BoletoFactory::SANTANDER, $dados);

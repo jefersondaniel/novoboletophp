@@ -10,8 +10,14 @@ class Boleto extends BoletoBase {
         return 'bancos/layout_bb.html';
     }
 
-    public function getLogoBanco() {
+    public function getLogoBanco()
+    {
         return 'logobb.jpg';
+    }
+
+    public function getCodigoBanco()
+    {
+        return 1;
     }
 
     protected function filterData(array $dadosboleto)
@@ -35,8 +41,8 @@ class Boleto extends BoletoBase {
             $dadosboleto['formatacao_nosso_numero'] = '2';
         }
 
-        $codigobanco = "001";
-        $codigo_banco_com_dv = $this->geraCodigoBanco($codigobanco);
+        $codigobanco = $this->getCodigoBancoFormatado();
+        $codigo_banco_com_dv = $this->getCodigoBancoComDv();
         $nummoeda = "9";
         $fator_vencimento = $this->fatorVencimento($dadosboleto["data_vencimento"]);
 
