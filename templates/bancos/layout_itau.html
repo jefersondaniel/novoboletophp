@@ -101,3 +101,21 @@
   </tbody>
 </table>
 {% endblock %}
+
+{% block ficha_header %}
+<table class="header" border=0 cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td width="131" valign="bottom">
+        <div style="font-weight:bold;padding:5px;font-size:1.1em;">
+          Banco Itaú S.A.
+        </div>
+      </td>
+      <td width=50>
+        <div class="field_cod_banco">{{ codigo_banco_com_dv }}</div>
+      </td>
+      <td class="linha_digitavel">{{ linha_digitavel }}</td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}
