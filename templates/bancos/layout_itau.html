@@ -1,0 +1,135 @@
+{% extends "layout_base.html" %}
+{% block head %}
+<style>
+  .sequencia_numerica {
+    font-size: 12px !important;
+    line-height: 14px;
+    margin: 4px 8px !important;
+    font-weight: bold;
+  }
+
+  #instr_content {
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 12px;
+  }
+
+  #instr_content h2 {
+    text-align: center;
+  }
+
+  table.header {
+    margin-top: 10px !important;
+  }
+
+  table.line tr.campos td {
+    height: 12px !important;
+    font-weight: bold;
+  }
+</style>
+{% endblock %}
+{% block instr %}
+<h2>Instru&ccedil;&otilde;es de impress&atilde;o</h2>
+<ol>
+  <li>
+    Imprima em impressora jato de tinta (ink jet) ou laser, em qualidade normal ou alta. N&atilde;o use modo econ&ocirc;mico.
+  </li>
+  <li>
+    Utilize folha A4 (210 x 297 mm) ou Carta (216 x 279 mm) e margens m&iacute;nimas &agrave; esquerda e &agrave; direita do formul&aacute;rio.
+  </li>
+  <li>
+    Corte na linha indicada. N&atilde;o rasure, risque, fure ou dobre a regi&atilde;o onde se encontra o c&oacute;digo de barras
+  </li>
+  <li>
+    Caso tenha problemas ao imprimir, copie a seqüencia numérica abaixo e pague no caixa eletrônico ou no internet banking:
+  </li>
+</ol>
+<p class="sequencia_numerica">
+  Linha Digit&aacute;vel: {{ linha_digitavel }}<br/>
+  Valor: {{ valor_boleto }}
+</p>
+{% endblock %}
+{% block recibo_linha1 %}
+<table class="line" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr class="titulos">
+      <td class="col_9_of_18">Beneficiário</td>
+      <td class="col_4_of_18">CPF/CNPJ</td>
+      <td class="end col_5_of_18">Vencimento</td>
+    </tr>
+
+    <tr class="campos">
+      <td>{{ cedente }}&nbsp;</td>
+      <td>{{ cpf_cnpj }}&nbsp;</td>
+      <td class="end">{{ data_vencimento }}&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}
+{% block recibo_linha3 %}
+<table class="line" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr class="titulos">
+      <td class="col_3_of_18">Data do Documento</td>
+      <td class="col_4_of_18">Nº documento</td>
+      <td class="col_2_of_18">Espécie doc.</td>
+      <td class="col_1_of_18">Aceite</td>
+      <td class="col_3_of_18">Data processamento</td>
+      <td class="end col_5_of_18">Nosso n&uacute;mero</td>
+    </tr>
+
+    <tr class="campos">
+      <td>{{ data_documento }}</td>
+      <td>{{ numero_documento }}</td>
+      <td class="especie_doc">{{ especie_doc }}</td>
+      <td class="aceite">{{ aceite }}</td>
+      <td>{{ data_processamento }}</td>
+      <td class="end">{{ nosso_numero }}</td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}
+{% block recibo_linha4 %}
+<table class="line" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr class="titulos">
+      <td class="col_6_of_18">Carteira</td>
+      <td class="col_2_of_18">Espécie</td>
+      <td class="col_3_of_18">Quantidade</td>
+      <td class="col_2_of_18">Valor</td>
+      <td class="end col_5_of_18">(=) Valor documento</td>
+    </tr>
+    <tr class="campos">
+      <td>
+        {{ carteira_descricao }}
+      </td>
+      <td class="especie">{{ especie }}</td>
+      <td>{{ quantidade }}</td>
+      <td>{{ valor_unitario }}</td>
+      <td class="end">{{ valor_boleto }}</td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}
+{% block ficha_linha4 %}
+<table class="line" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr class="titulos">
+      <td class="col_6_of_18">Carteira</td>
+      <td class="col_2_of_18">Espécie</td>
+      <td class="col_3_of_18">Quantidade</td>
+      <td class="col_2_of_18">Valor</td>
+      <td class="end col_5_of_18">(=) Valor documento</td>
+    </tr>
+    <tr class="campos">
+      <td>
+        {{ carteira_descricao }}
+      </td>
+      <td class="especie">{{ especie }}</td>
+      <td>{{ quantidade }}</td>
+      <td>{{ valor_unitario }}</td>
+      <td class="end">{{ valor_boleto }}</td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

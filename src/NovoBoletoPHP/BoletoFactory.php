@@ -11,6 +11,7 @@ class BoletoFactory {
 
     const BANCO_DO_BRASIL = 1;
     const SANTANDER = 33;
+    const ITAU = 341;
 
     public function __construct(array $config = array())
     {
@@ -33,7 +34,8 @@ class BoletoFactory {
 
         $this->layouts = array(
             self::BANCO_DO_BRASIL => '\NovoBoletoPHP\BancoDoBrasil\Boleto',
-            self::SANTANDER => '\NovoBoletoPHP\Santander\Boleto'
+            self::SANTANDER => '\NovoBoletoPHP\Santander\Boleto',
+            self::ITAU => '\NovoBoletoPHP\Itau\Boleto'
         );
 
         $this->configure();
