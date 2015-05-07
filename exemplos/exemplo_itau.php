@@ -3,34 +3,34 @@ require_once '../vendor/autoload.php';
 
 use \NovoBoletoPHP\BoletoFactory;
 
-$currentLocation = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
 $factory = new NovoBoletoPHP\BoletoFactory(array(
     'cachePath' => false, // Em produção, sempre definir uma pasta para os caches do Twig.
-    'imageUrl' => dirname($currentLocation).'/images'
 ));
 
 $dados = array(
-    'codigo_cedente' => '13877',
-    'nosso_numero' => '/12345678',
+    'codigo_cedente' => '12345',
+    'nosso_numero' => '108480',
     'inicio_nosso_numero' => '7000',
     'numero_documento' => '0123',
     'data_vencimento' => '26/04/2015',
     'data_documento' => '21/04/2015',
     'data_processamento' => '21/04/2015',
-    'valor_boleto' => 2952.95,
+    'valor_boleto' => '320,00',
     'carteira' => '175',
-    'especie_doc' => 'DS',
+    'especie_doc' => 'DV', // DS = Duplicata de Serviço, DM = Duplicata Mercantil, DV = Duplicata de Verso
 
     'sacado' => 'Jeferson Daniel',
     'sacado_documento' => '643.149.352-43',
     'endereco1' => 'Rua de Teste, 472 - Vila Teste',
     'endereco2' => 'Cidade de Teste, São Paulo - BR',
     'demonstrativo1' => 'Pagamento 1 de 5 da mensalidade',
-    'instrucoes1' => 'Não receber após vencimento',
+    'instrucoes1' => '- Desconto de R$ 224,00 até 06/04/2015',
+    'instrucoes2' => '- Receber até 10 dias após o vencimento',
+    'instrucoes3' => '- Sr. Caixa, cobrar multa de R$ 6,40 após o vencimento e R$ 0,33 de juros diários',
     'aceite' => 'N',
     'especie' => 'R$',
-    'agencia' => '1565', // Num da agencia, sem digito
+    'agencia' => '123', // Num da agencia, sem digito
     'conta' => '13877', // Num da conta, sem digito
     'conta_dv' => '1',
     'identificacao' => 'Empresa de Teste',

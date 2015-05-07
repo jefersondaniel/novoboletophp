@@ -26,6 +26,7 @@ class Boleto extends BoletoBase {
         $data = array_merge($data, array(
             'texto_sacado' => 'Pagador',
             'texto_cedente' => 'Beneficiário',
+            'texto_valor_unitario' => 'x Valor',
             'exibir_demonstrativo_na_ficha' => false,
             'exibir_demonstrativo_no_recibo' => true,
             'agencia_codigo' => $data['agencia'] . ' / '. $data['conta'] . $data['conta_dv'],
