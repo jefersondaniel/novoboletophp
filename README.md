@@ -14,7 +14,8 @@ Projeto baseado no boletophp que visa manter os boletos atualizados e ser mais f
 | Banco           | Carteira                | Testado      |
 |-----------------|-------------------------|--------------|
 | Banco do Brasil | Carteira 18 Variação 27 | Sim          |
-| Santander       |                         | Não          |
+| Itaú            |                         | Sim          |
+| Santander       |                         | Sim          |
 
 Como os layouts serão baseados no boletophp, deixamos crédito aos desenvolvedores listados no síte http://boletophp.com.br/ 
 
