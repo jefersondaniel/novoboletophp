@@ -24,8 +24,8 @@ abstract class Boleto {
         $data = array_merge($data, array(
             'logo_banco' => $this->getLogoBanco(),
             'codigo_banco_com_dv' => $this->getCodigoBancoComDv(),
-            'texto_sacado' => 'Sacado', // Pode variar para Pagador
-            'texto_cedente' => 'Cedente', // Pode variar para Beneficiário
+            'texto_sacado' => 'Pagador',
+            'texto_cedente' => 'Beneficiário',
             'exibir_demonstrativo_na_ficha' => true,
             'exibir_demonstrativo_no_recibo' => false,
         ));
