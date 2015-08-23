@@ -125,12 +125,15 @@
         border-left: 1px black solid;
         padding-left: 2px;
       }
-      table.line tr.campos td {
+      table.line tr.campos td, span.campos {
         height: 12px;
         font-size: 10px;
         color: black;
         border-left: 1px black solid;
         padding-left: 2px;
+      }
+      span.campos {
+        border: none;
       }
       table.line td p {
         font-size: 10px;
@@ -422,7 +425,7 @@
           <tbody>
             <tr class="titulos">
               <td class="col_13_of_18">Endereço</td>
-              <td class="end col_5_of_18">Agência / Cod. cedente</td>
+              <td class="end col_5_of_18">Agência / Código do {{texto_cedente}}</td>
             </tr>
 
             <tr class="campos">
@@ -557,7 +560,7 @@
           <tbody>
             <tr class="titulos">
               <td class="col_13_of_18">{{texto_cedente}}</td>
-              <td class="col_5_of_18">Ag&ecirc;ncia/C&oacute;digo cedente</td>
+              <td class="col_5_of_18">Agência/Código do {{texto_cedente}}</td>
             </tr>
             <tr class="campos">
               <td>{{ cedente }}</td>
@@ -627,7 +630,7 @@
                   <tbody>
                     <tr class="titulos">
                       <td class="instrucoes">
-                        Instru&ccedil;&otilde;es (Texto de responsabilidade do cedente)
+                        Instru&ccedil;&otilde;es (Instruções de responsabilidade do beneficiário. Qualquer dúvida sobre este boleto, contate o beneficiário)
                       </td>
                     </tr>
                     <tr class="campos">
@@ -770,3 +773,4 @@
     </div>
   </body>
 </html>
+
