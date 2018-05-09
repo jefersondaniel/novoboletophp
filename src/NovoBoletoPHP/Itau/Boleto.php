@@ -51,8 +51,8 @@ class Boleto extends BoletoBase {
         $linha = substr($codigo_barras, 0, 4).$dv.substr($codigo_barras, 4, 43);
         $nossonumero = $carteira.'/'.$nnum.'-'.$this->modulo10($agencia.$conta.$carteira.$nnum);
         $agencia_codigo = $agencia." / ". $conta."-".$this->modulo10($agencia.$conta);
-        $data["codigo_barras"] = $linha;
-        $data["linha_digitavel"] = $this->montaLinhaDigitavel($linha); // verificar
+        $data["codigo_barras"] = (array_key_exists('codigo_barras', $data) ? $data['codigo_barras'] : $linha);
+        $data["linha_digitavel"] = (array_key_exists('linha_digitavel', $data) ? $data['linha_digitavel'] : $this->montaLinhaDigitavel($linha)); // verificar
         $data["agencia_codigo"] = $agencia_codigo ;
         $data["nosso_numero"] = $nossonumero;
         $data["codigo_banco_com_dv"] = $codigo_banco_com_dv;
