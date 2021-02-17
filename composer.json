@@ -2,7 +2,7 @@
     "name": "jefersondaniel/novoboletophp",
     "description": "Geração de boletos em HTML e PDF. Baseado no boletophp",
     "require": {
-        "twig/twig": "~1.18",
+        "twig/twig": "^2.10|^3.0",
         "piotrooo/wsdl-creator": "1.*"
     },
     "require-dev": {
