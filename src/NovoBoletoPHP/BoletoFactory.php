@@ -69,14 +69,52 @@ class BoletoFactory {
         $tmpfname1 = tempnam(sys_get_temp_dir(), 'wkhtml').'.html';
         $tmpfname2 = tempnam(sys_get_temp_dir(), 'wkhtml').'.pdf';
         file_put_contents($tmpfname1, $html);
-        $output = array();
-        $return = null;
-        exec("xvfb-run -a -s '-screen 0 640x480x16' wkhtmltopdf --page-size A5 --margin-left 10mm --margin-right 10mm --zoom 2 {$tmpfname1} {$tmpfname2} 2>&1", $output, $return);
-        if($return != 0)
-            throw new \Exception(implode("<br />", $output));
-        if(!file_exists($tmpfname2))
-            throw new \Exception("Arquivo não gerado em $tmpfname2");
-        return file_get_contents($tmpfname2);
+        
+        $descriptorspec = array(
+            0 => array("pipe", "r"),
+            1 => array("pipe", "w"),
+            2 => array("pipe", "w")
+        );
+        
+        $process = proc_open("xvfb-run -a -s '-screen 0 640x480x16' wkhtmltopdf --page-size A5 --margin-left 10mm --margin-right 10mm --zoom 2 {$tmpfname1} {$tmpfname2}", $descriptorspec, $pipes);
+        
+        if (is_resource($process)) {
+            // Timeout em segundos
+            $timeout = 20;
+            $start_time = time();
+        
+            while (true) {
+                $status = proc_get_status($process);
+                if (!$status['running']) {
+                    break;
+                }
+                if (time() - $start_time > $timeout) {
+                    proc_terminate($process);
+                    throw new \Exception("Timeout ao executar o comando wkhtmltopdf");
+                }
+                usleep(100000);
+            }
+        
+            $output = stream_get_contents($pipes[1]);
+            fclose($pipes[1]);
+        
+            $errors = stream_get_contents($pipes[2]);
+            fclose($pipes[2]);
+        
+            $return = proc_close($process);
+        
+            if ($return !== 0) {
+                throw new \Exception("Erro ao executar o comando wkhtmltopdf: " . $errors);
+            }
+        
+            if (!file_exists($tmpfname2)) {
+                throw new \Exception("Arquivo não gerado em $tmpfname2");
+            }
+        
+            return file_get_contents($tmpfname2);
+        } else {
+            throw new \Exception("Falha ao iniciar o processo wkhtmltopdf");
+        }
     }
 
     public function makeImageUrl($imageName)
